@@ -1,0 +1,99 @@
+print("---- Loja Virtual ----")
+
+#  VALORES DAS ROUPAS
+
+#(Valor das Camisetas)
+vlcmsP = 25 
+vlcmsM = 35
+vlcmsG = 45
+#(Valores das Calças)
+vlcalP = 40
+vlcalM = 50
+vlcalG = 60
+#(Valores dos casacos)
+vlcscP = 50
+vlcscM = 65
+vlcscG = 80
+
+# O continuar controla esse loop, ou seja, enquanto o usuário dizer sim ele continuar, agora quando dizer não ele para.
+# Criei uma lista de armazenamento 
+# Como o usuário que vai escolher a quantidade que irá levar, o total começa com 0
+contn = "sim"
+cprs = []
+totgrl = 0
+
+#O while será o loop, (Enquanto dizer sim, ele continua. Quando dizer não ele para de rodar o código.)
+while contn == "sim":
+    escol = (input("Qual o tipo de roupa deseja escolher? Temos camiseta, calça e casaco:  "))
+# Pede que o usuário escolha qual roupa quer
+
+# Aqui ele só aceita se o usuário escolher camiseta, calça ou casaco. Qualquer coisa diferente disso ele não roda
+    if escol.lower() == "camiseta" or escol == "calca" or escol == "casaco": # type: ignore
+        taman = (input("Qual o tamanho? Temos P, M e G: "))
+# Funciona igual o de cima, ele só aceita P, M ou G, qualquer coisa diferente ele para
+        if taman == "P" or taman == "M" or taman == "G":
+            qntd = (input("Quantas peças deseja? "))
+            print()
+    # Mesmo modelo,a única coisa que muda é que desta vez estamos falando de quantidade
+            if qntd.isnumeric():
+                qntd = int(qntd)
+# Isnumeric verifica se o que o usuário inseriu é um número inteiro
+                if qntd > 0:
+                    if escol == "camiseta":
+                         if taman == "P":
+                            valor = vlcmsP
+                         elif taman == "M":
+                            valor = vlcmsM
+                         else: 
+                            taman == "G"
+                            valor = vlcmsG
+                    if escol == "calca":
+                        if taman == "P":
+                             valor = vlcalP
+                        elif taman == "M":
+                             valor = vlcalM
+                        else: 
+                            taman == "G"
+                            valor = vlcalG
+                    if escol == "casaco":
+                        if taman == "P":
+                             valor == vlcscP
+                        elif taman == "M":
+                            valor == vlcscM
+                        else: 
+                            taman == "G"
+                            valor == vlcscG
+
+                    totprcl = valor * qntd
+                    totgrl += totprcl
+
+                    cprs.append({
+                        "Escolha": escol,
+                        "Tamanho": taman,
+                        "Quantidade": qntd,
+                        "Valor": valor,
+                        "Total Parcial": totprcl
+                    })
+                    print("---CARRINHO DE COMPRAS---")
+                    print()
+                    print (f"{qntd}x {escol} tamanho {taman} por R${valor} cada -> Total: R${totprcl}")
+                    print()
+                else: print("!!! QUANTIDADE INVÁLIDA, TENTE NOVAMENTE !!!")
+            else: print("!!! OPÇÃO INVÁLIDA, NÃO É PERMITIDOS NÚMEROS NEGATIVOS !!!")
+        else: print("!!! TAMANHO INVÁLIDO, É PERMITIDO SOMENTE P, M, G !!!")
+    else: print("!!! ESCOLHA INVÁLIDA, É PERMITIDO SOMENTE CAMISETA, CALÇA, CASACO !!!")
+
+    contn = (input("Continuar compra? (Sim/Não) "))
+
+if len(cprs) > 0:
+    print("\n---AQUI ESTÁ SEU PEDIDO---")
+    for i in range(len(cprs)):
+        peca = cprs[i]
+        print(f"{i+1}) {peca['Quantidade']}x {peca['Escolha']} tamanho {peca['Tamanho']} - R${peca['Valor']} cada - Subtotal: R${peca['Total Parcial']}")
+    print(" \nGERANDO VALOR TOTAL...")
+    print(f"AQUI ESTÁ O TOTAL DA SUA COMPRA -> R${totgrl}")
+else:
+    print("!!!NENHUM PEDIDO FOI REGISTRADO!!!")
+print()
+print("----AGRADECEMOS PELA PREFERÊNCIA, VOLTE SEMPRE----")
+print()
